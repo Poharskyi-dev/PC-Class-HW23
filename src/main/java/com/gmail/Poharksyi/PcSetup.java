@@ -1,5 +1,7 @@
 package com.gmail.Poharksyi;
 
+import java.util.Objects;
+
 public class PcSetup {
     private int ramAmount;
     private int coreAmount;
@@ -68,5 +70,25 @@ public class PcSetup {
                 ", uuid='" + uuid + '\'' +
                 ", operationSystem=" + operationSystem +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PcSetup)) return false;
+        PcSetup pcSetup = (PcSetup) o;
+        return ramAmount == pcSetup.ramAmount && coreAmount == pcSetup.coreAmount && Objects.equals(name, pcSetup.name) && Objects.equals(uuid, pcSetup.uuid) && operationSystem == pcSetup.operationSystem;
+    }
+
+    public boolean equalsJustRam(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PcSetup)) return false;
+        PcSetup pcSetup = (PcSetup) o;
+        return ramAmount == pcSetup.ramAmount;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ramAmount, coreAmount, name, uuid, operationSystem);
     }
 }
